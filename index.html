@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #1d1d1f;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 20px;
+            color: #86868b;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .contact-info a {
+            color: #06c;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a:hover {
+            color: #0077ed;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:nth-child(5) { animation-delay: 0.4s; }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1d1d1f;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #1d1d1f;
+        }
+
+        /* Experience & Education */
+        .timeline-item {
+            margin-bottom: 35px;
+            padding-left: 25px;
+            border-left: 2px solid #e8e8ed;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-left-color: #667eea;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-item h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .timeline-item .company {
+            font-size: 17px;
+            color: #06c;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .timeline-item .date {
+            font-size: 15px;
+            color: #86868b;
+            margin-bottom: 12px;
+        }
+
+        .timeline-item p, .timeline-item ul {
+            font-size: 16px;
+            color: #515154;
+            line-height: 1.7;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .timeline-item ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f5f5f7;
+            padding: 25px;
+            border-radius: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: #e8e8ed;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #515154;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: #f5f5f7;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: #e8e8ed;
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+
+        .project-card p {
+            font-size: 16px;
+            color: #515154;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #86868b;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            section {
+                padding: 35px 25px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="profile-image">
+                <img src="images/证件照.jpg" alt="个人头像">
+            </div>
+            <h1>张瀚文</h1>
+            <p class="title">机器识别/前端开发 & 算法控制（硕士）/ AI & Frontend Developer</p>
+            <div class="contact-info">
+                <a href="mailto:1045949435@qq.com">📧 1045949435@qq.com</a>
+                <a href="tel:+8615527893801">📱 155 2789 3801</a>
+                <a href="https://github.com/zhanghanwen" target="_blank">💻 GitHub</a>
+                <a href="https://linkedin.com/in/zhanghanwen" target="_blank">🔗 LinkedIn</a>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>关于我</h2>
+            <p class="about-text">
+                我是一名2026届应届硕士毕业生，就读于中国石油大学（北京）信息与通信工程专业。
+                在校期间专注于5G通信技术、人工智能算法与图像处理研究，拥有扎实的理论基础和丰富的项目实践经验。
+                熟练掌握PyTorch、TensorFlow等深度学习框架，熟悉前端开发技术栈（Vue/React），能够将AI算法与实际应用有效结合。
+                曾主导多个5G通信和AI检测相关项目，具备良好的团队协作能力和问题解决能力。
+                热爱技术，善于学习，期待在实际工作中持续成长，为企业创造价值。
+            </p>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>实践经历</h2>
+            
+            <div class="timeline-item">
+                <h3>班级团支部书记</h3>
+                <div class="company">班级团支部</div>
+                <div class="date">2021.09 - 2023.06</div>
+                <ul>
+                    <li>工作描述：2021-2023 年任班级团支部书记，并获"2021 年度团支书考评满意奖"</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>社长</h3>
+                <div class="company">校篮协会</div>
+                <div class="date">2021.09 - 2022.06</div>
+                <ul>
+                    <li>工作描述：多次带领团队员参加各级赛并社团活动全校共及校外处，统计国成员从 30 余人增高至 80 余人，规模达翻倍年终全年</li>
+                    <li>获得荣誉：103 个社团之星</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>助教</h3>
+                <div class="company">EDA/FPGA 课程</div>
+                <div class="date">2023.09 - 2024.06</div>
+                <ul>
+                    <li>工作描述：定期与老师进行配合，协助老师开展绩效管理与实验室光环，评定验收、代码等研讨</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>成员</h3>
+                <div class="company">校志愿协会</div>
+                <div class="date">2020.09 - 2021.06</div>
+                <ul>
+                    <li>工作描述：多次带部进游览，并作为负责人组织了"破型业"、"道德与兵符"、"道德与外文迫德操"等志愿的活动</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2>教育背景</h2>
+            
+            <div class="timeline-item">
+                <h3>信息与通信工程 - 工学硕士</h3>
+                <div class="company">中国石油大学（北京）</div>
+                <div class="date">2023.09 - 2026.06</div>
+                <p>综合成绩排名 3/约内蒙古班学第3；在校内蒙古班学第2、进班一级奖学金单项奖</p>
+                <p>主要课程：通信原理、无线与移动通信、人工智能导论、图像处理与识别、信号与系统、数字信号处理、机器学习、深度学习、模式识别等</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>电子信息科学与技术 - 工学学士</h3>
+                <div class="company">中国石油大学（北京）</div>
+                <div class="date">2019.09 - 2023.06</div>
+                <p>主要课程：通信原理、信号与系统、工程力学、流体力学、岩石力学、机器学习与控制、PLQ应原及应用、可编程逻辑器件原理及应用、机电与控制、CAD制图等</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>专业技能</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>深度学习 & AI</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">5G通信技术</span>
+                        <span class="skill-tag">AI算法</span>
+                        <span class="skill-tag">图像处理</span>
+                        <span class="skill-tag">分制册解</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>前端开发</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Element</span>
+                        <span class="skill-tag">Router</span>
+                        <span class="skill-tag">Vue/React</span>
+                        <span class="skill-tag">Axios</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>图像处理 & 工具</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">图像分割</span>
+                        <span class="skill-tag">目标检测</span>
+                        <span class="skill-tag">图像增强</span>
+                        <span class="skill-tag">立体匹配</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>语言 & 其他</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">英语 CET-6</span>
+                        <span class="skill-tag">学习力强</span>
+                        <span class="skill-tag">热爱运动</span>
+                        <span class="skill-tag">有责任心</span>
+                        <span class="skill-tag">抗压力强</span>
+                        <span class="skill-tag">工作效率高</span>
+                        <span class="skill-tag">乐观积极</span>
+                        <span class="skill-tag">真诚</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>项目经验</h2>
+            
+            <div class="project-card">
+                <h3>能源管理巡检无人机通信系统：AI通讯检测算法与产品研究</h3>
+                <p class="company" style="color: #06c; font-weight: 500; margin-bottom: 10px;">负责人 | 2024.9 - 至今</p>
+                <p>
+                    <strong>研究方向：</strong>①视觉系统端对端设计，包括无人机主控板设计安装、摄像头组或(双目/彩色)输出配置调试、5G传输模块端对端通信等;<br>
+                    <strong>主要成果：</strong>《精准定位识别》实现87%、熟悉电子器与应用开发及构建完善的巡检导航流程、可实现入U-Net网络深度30层等高精度实时检测。
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">AI算法</span>
+                    <span class="tech-badge">U-Net</span>
+                    <span class="tech-badge">5G通信</span>
+                    <span class="tech-badge">图像检测</span>
+                    <span class="tech-badge">Linux系统</span>
+                    <span class="tech-badge">Web前端</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>5G通信智能工厂数智化协同系统及网页产品研发</h3>
+                <p class="company" style="color: #06c; font-weight: 500; margin-bottom: 10px;">负责人 | 2024.02 - 2025.03</p>
+                <p>
+                    <strong>项目概述：</strong>聚焦能源行业，使用"5G 通信+人工智能+数智化转型"融合需求，开展利有利于进集团电器数字化系统、项目开及心设备装5G通信巡检器设计<br>
+                    <strong>个人负责：</strong>主导协作厂区5G通信监巡检设计，完成与协作链接协规，数据传输链接协化，以及指导生产环境测试和监控计算开支，基于U监督+工厂数智化器为集众，推进5G通信与AI床共术市不同产品研发项目等
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">5G通信</span>
+                    <span class="tech-badge">人工智能</span>
+                    <span class="tech-badge">数智化转型</span>
+                    <span class="tech-badge">数据监控</span>
+                    <span class="tech-badge">系统设计</span>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="background: #f5f5f7; padding: 30px; border-radius: 18px; margin-bottom: 20px;">
+                <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 15px;">技能证书</h3>
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    <li style="padding-left: 20px; position: relative; margin-bottom: 12px; font-size: 16px; color: #515154;">
+                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">•</span>
+                        工业互联网平台工程证书级资格证书
+                    </li>
+                    <li style="padding-left: 20px; position: relative; margin-bottom: 12px; font-size: 16px; color: #515154;">
+                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">•</span>
+                        工业互联网络机全工程证书级资格证书
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section id="awards">
+            <h2>荣誉奖励</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>科技创新类</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">科技创新先进个人</span>
+                        <span class="skill-tag">24 年度积极一等奖学金</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>学术成就</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">第十六届蓝桥杯 web 应用开发比赛获奖三等奖</span>
+                        <span class="skill-tag">第十五届蓝桥杯 EDA 设计考开发建赛获奖三等奖</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>奖学金</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">校二等奖学金</span>
+                        <span class="skill-tag">25 年度积极一等奖学金</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 张瀚文. 保留所有权利.</p>
+        </footer>
+    </div>
+</body>
+</html>
